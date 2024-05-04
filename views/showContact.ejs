@@ -72,8 +72,8 @@
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Close
                       </button>
-                      <!-- <input type="hidden" value="<%= contact._id %>"> -->
-                      <button type="button" id="deleteBtn" class="btn btn-danger" id="confirmDeleteBtn">
+                      <input type="hidden" value="<%= contact._id %>">
+                      <button type="button" id="confirmDeleteBtn" class="btn btn-danger">
                         delete
                       </button>
                     </div>
@@ -81,7 +81,6 @@
                 </div>
               </div>
             </td>
-            <!-- <td><a href="/updateContact?contactId=<%= contact._id %>">Update</a></td> -->
             <!-- <td><a href="/deleteContact?contactId=<%= contact._id %>">Delete</a></td> -->
           </tr>
           <% }) %>
@@ -109,17 +108,20 @@
         $(".deleteBtn").click(function () {
             var contactId = $(this).data("contact-id");
             $("#confirmDeleteBtn").data("contact-id", contactId);
+            // console.log(contactId);
         });
 
         // When the confirm delete button in the modal is clicked, send the delete request
         $("#confirmDeleteBtn").click(function () {
             var contactId = $(this).data("contact-id");
+            console.log(contactId);
             $.ajax({
                 url: `http://localhost:3000/deleteContact?id=${contactId}`,
                 method: "DELETE",
                 success: function (data) {
-                    console.log("Contact deleted successfully:", data);
+                    // console.log("Contact deleted successfully:", data);
                     // Reload the page or update the contact list as needed
+                    location.reload();
                 },
                 error: function (err) {
                     console.error("Error deleting contact:", err);
