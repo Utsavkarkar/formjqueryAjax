@@ -38,12 +38,12 @@
         <!-- <span class="container"></span>   -->
 
 <!-- Bootstrap Toast -->
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="responseToast">
-          <div class="toast-header">
-            <strong class="me-auto">Response</strong>
+        <div class="toast alert-danger" role="alert" aria-live="assertive" aria-atomic="true" id="responseToast">
+          <div class="toast-header ">
+            <strong class="me-auto">Alert</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
-          <div class="toast-body">
+          <div class="toast-body ">
             <!-- Response message will be shown here -->
           </div>
         </div>
@@ -88,7 +88,9 @@
             }).done(function(msg) { 
                 // When the request is successful 
                 // $('span').text(msg.msg);
-                
+                if(msg.msg == "User created") {
+                    location.href = "http://localhost:3000/dashboard2";
+                }
                 $('#responseToast .toast-body').text(msg.msg); 
                 $('.toast').toast('show');
                 
