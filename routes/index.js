@@ -1,6 +1,6 @@
 var express = require('express');
 const { createUser } = require('../controllers/userController');
-const { createContact, showContact, deleteContact } = require('../controllers/contactController');
+const { createContact, showContact, deleteContact, contactlist, dashboard } = require('../controllers/contactController');
 const contact = require('../models/contactModel');
 const storage = require('node-persist');
 storage.init();
@@ -11,17 +11,19 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/dashboard', function(req, res, next) {
-  res.render('dash');
+router.get('/login', function(req, res, next) {
+  res.render('login');
 });
 
-router.get('/dashboard2', function(req, res, next) {
-  res.render('dash2');
-});
+router.get('/dashboard', dashboard);
+// router.get('/contactlist', function(req, res, next) {
+//   res.render('contactlist');
+// });
+router.get("/contactlist", contactlist);
 router.get('/showContact', async (req, res) => {
   const userId = await storage.getItem('userId');
   const contacts = await contact.find({userId});
-  return res.render('showContact', {contacts : contacts});
+  return res.render('showContact2', {contacts : contacts});
 });
 
 router.post('/createUser', createUser);

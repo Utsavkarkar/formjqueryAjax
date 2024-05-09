@@ -9,7 +9,18 @@ exports.createContact = async (req, res) => {
     // if(coNumber.length < 10) return res.json({msg: 'Phone number must be at least 10 characters'});
 
     await contact.create({ name, coNumber, userId });
-    return res.json({msg: 'Contact created'}); 
+    return res.json({flag:1,msg:'Contact created',data:[]});
+}
+
+exports.dashboard = async (req, res) => {
+    const userId = await storage.getItem('userId');
+    const contacts = await contact.find({userId});
+    return res.render('dashboard', {contacts : contacts});
+}
+exports.contactlist = async (req, res) => {
+    const userId = await storage.getItem('userId');
+    const contacts = await contact.find({userId});
+    return res.render('contactlist', {contacts : contacts});
 }
 
 exports.deleteContact = async (req, res) => {

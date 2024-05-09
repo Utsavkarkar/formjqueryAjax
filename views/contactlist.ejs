@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Number</td>
+        <td>Delete</td>
+        <td>Update</td>
+    </tr>
+    <% for (let i = 0; i < contacts.length; i++) { %>
+    <tr>
+        <td><%= contacts[i].name %></td>
+        <td><%= contacts[i].coNumber %></td>
+        <td><a href="/deleteContact?contactId=<%= contacts[i]._id %>">Delete</a></td>
+        <td><a href="/updateContact?contactId=<%= contacts[i]._id %>">Update</a></td>
+    </tr>
+    <% } %>
+</table>
