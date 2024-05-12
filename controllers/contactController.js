@@ -13,9 +13,10 @@ exports.createContact = async (req, res) => {
 }
 
 exports.dashboard = async (req, res) => {
-    const userId = await storage.getItem('userId');
-    const contacts = await contact.find({userId});
-    return res.render('dashboard', {contacts : contacts});
+    // const userId = await storage.getItem('userId');
+    // const contacts = await contact.find({userId});
+    // return res.render('dashboard', {contacts : contacts});
+    return res.render('dashboard');
 }
 exports.contactlist = async (req, res) => {
     const userId = await storage.getItem('userId');

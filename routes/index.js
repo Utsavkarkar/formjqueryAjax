@@ -3,6 +3,7 @@ const { createUser } = require('../controllers/userController');
 const { createContact, showContact, deleteContact, contactlist, dashboard } = require('../controllers/contactController');
 const contact = require('../models/contactModel');
 const storage = require('node-persist');
+const { chkToken } = require('../middlewares/auth');
 storage.init();
 var router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
-router.get('/dashboard', dashboard);
+router.get('/dashboard',chkToken, dashboard);
 // router.get('/contactlist', function(req, res, next) {
 //   res.render('contactlist');
 // });

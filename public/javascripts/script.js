@@ -34,6 +34,7 @@ $(document).ready(function () {
       }).done(function(msg) { 
           // When the request is successful 
           // $('span').text(msg.msg);
+          console.log(`msg: ${msg.msg}`);
           if(msg.msg == "User created") {
               location.href = "http://localhost:3000/dashboard";
           }
